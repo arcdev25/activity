@@ -37,13 +37,17 @@ function App() {
           fontSize: "13px",
         }}
       >
-        <thead>
+       <thead>
           <tr>
             <th>Device</th>
             <th>Online</th>
-            <th>Active</th>
-            <th>Keyboard / min</th>
-            <th>Mouse / min</th>
+            <th>Status</th>
+            <th>Application</th>
+            <th>Keys</th>
+            <th>Clicks</th>
+            <th>Scrolls</th>
+            <th>Moves</th>
+            <th>Score</th>
             <th>Last Seen</th>
           </tr>
         </thead>
@@ -57,33 +61,38 @@ function App() {
             })
             .map((user) => (
             <tr key={user.userId}>
-              <td style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user.deviceName || user.userId}</td>
+              <td>{user.deviceName || user.userId}</td>
+
               <td>
                 {user.isOnline ? (
-                  <span style={{ color: "#22c55e", fontWeight: "bold" }}>
-                    ● Online
-                  </span>
+                  <span style={{ color: "#22c55e", fontWeight: "bold" }}>● Online</span>
                 ) : (
-                  <span style={{ color: "#ef4444", fontWeight: "bold" }}>
-                    ● Offline
-                  </span>
+                  <span style={{ color: "#ef4444", fontWeight: "bold" }}>● Offline</span>
                 )}
               </td>
 
               <td>
-                {user.isActive ? (
-                  <span style={{ color: "#3b82f6", fontWeight: "bold" }}>
-                    ● Active
+                {user.status === "Working" ? (
+                  <span style={{ color: "#22c55e", fontWeight: "bold" }}>
+                    🟢 Working
+                  </span>
+                ) : user.status === "Suspicious" ? (
+                  <span style={{ color: "#f59e0b", fontWeight: "bold" }}>
+                    🟡 Suspicious
                   </span>
                 ) : (
-                  <span style={{ color: "#a1a1aa", fontWeight: "bold" }}>
-                    ● Idle
+                  <span style={{ color: "#9ca3af", fontWeight: "bold" }}>
+                    ⚪ Idle
                   </span>
                 )}
               </td>
-              <td style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user.keyboardCount}</td>
-              <td style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{user.mouseCount}</td>
-              <td style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{new Date(user.lastSeen).toLocaleString()}</td>
+              <td>{user.activeWindow}</td>
+              <td>{user.keyboardCount || 0}</td>
+              <td>{user.mouseClickCount || 0}</td>
+              <td>{user.mouseScrollCount || 0}</td>
+              <td>{user.mouseMoveCount || 0}</td>
+              <td>{user.score || 0}</td>
+              <td>{new Date(user.lastSeen).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>
