@@ -23,17 +23,16 @@ function App() {
         width: "100%",
         height: "100vh",
         boxSizing: "border-box",
-        overflow: "hidden",
+        overflow: "auto",
       }}
     >
-
       <table
         border="1"
         cellPadding="6"
         style={{
           width: "100%",
           borderCollapse: "collapse",
-          tableLayout: "fixed",
+          
           fontSize: "13px",
         }}
       >
@@ -86,7 +85,15 @@ function App() {
                   </span>
                 )}
               </td>
-              <td>{user.activeWindow}</td>
+              <td
+  style={{
+    whiteSpace: "normal",
+    wordBreak: "break-word",
+    minWidth: "350px",
+  }}
+>
+  {user.activeWindow || "Unknown"}
+</td>
               <td>{user.keyboardCount || 0}</td>
               <td>{user.mouseClickCount || 0}</td>
               <td>{user.mouseScrollCount || 0}</td>
