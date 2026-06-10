@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("https://trying-attacks-warrior-intersection.trycloudflare.com/");
+const socket = io("https://forgot-spam-constraint-supervision.trycloudflare.com/");
 function App() {
   const [users, setUsers] = useState({});
 
