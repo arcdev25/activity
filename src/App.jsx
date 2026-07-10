@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("https://tray-decorating-openings-inspector.trycloudflare.com/");
+const socket = io("https://monitor-sand-gamma.vercel.app/");
 function App() {
   const [users, setUsers] = useState({});
 
   useEffect(() => {
     socket.on("live-users", (data) => {
+      
       setUsers(data);
     });
 
