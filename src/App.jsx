@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("https://monitor-sand-gamma.vercel.app/");
+const socket = io("http://88.99.144.9:4000/");
 function App() {
   const [users, setUsers] = useState({});
 
